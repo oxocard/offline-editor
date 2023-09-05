@@ -1,3 +1,4 @@
+import { Suspense, lazy } from 'react';
 import { ThemeProvider } from '@mui/material/styles';
 import styled from 'styled-components';
 import { useAppSelector } from './store/hooks';
@@ -7,7 +8,6 @@ import themes, { Theme } from './theme';
 /* Components */
 import Header from './components/Header';
 import ToolsHeader from './components/ToolsHeader';
-import Editor from './components/Editor';
 import Menu from './components/Menu';
 import Footer from './components/Footer';
 import SnapshotView from './components/SnapshotView';
@@ -57,6 +57,14 @@ const EditorContainer = styled.div<EditorContainerProps>`
   }
 `;
 
+const EditorLoadingContainer = styled.div`
+  flex: 1;
+  background-color: ${({ theme }: { theme: Theme }) => theme.colors.contentBackground};
+`;
+
+/* Lazy load the editor to use it in a suspense block */
+const Editor = lazy(() => import('./components/Editor'));
+
 function App() {
   const isMenuOpen = useAppSelector((state) => state.layout.isMenuOpen);
   const usedTheme = useAppSelector((state) => state.layout.theme);
@@ -69,7 +77,9 @@ function App() {
         <MainContainer>
           <EditorContainer isMenuOpen={isMenuOpen}>
             <ToolsHeader />
-            <Editor />
+            <Suspense fallback={<EditorLoadingContainer />}>
+              <Editor />
+            </Suspense>
           </EditorContainer>
           <Menu />
         </MainContainer>
