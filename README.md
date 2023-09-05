@@ -15,7 +15,7 @@ This project uses Node.js (at least v16.14). You can install it from [here](http
 
 1. Clone the repository and open the Project in a terminal or IDE
 2. Install dependencies with `npm install`
-3. Build the project with `npm build`
+3. Build the project with `npm run build`
 4. Start the editor with `npm start`
 5. Open http://localhost:1777 in an up to date Chrome or Edge browser
 
