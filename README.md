@@ -9,7 +9,8 @@ Alternatively you can start the Editor in development mode. See section Developm
 
 ### Prerequisite
 
-This project uses Node.js (at least v16.14). You can install it from [here](https://nodejs.org/).
+- This project uses Node.js (at least v16.14). You can install it from [here](https://nodejs.org/).
+- For the Oxocards Science and Connect the driver for the USB chip must be installed: http://www.wch-ic.com/search?q=CH340&t=downloads
 
 ### Clone, build and run
 
@@ -17,7 +18,7 @@ This project uses Node.js (at least v16.14). You can install it from [here](http
 2. Install dependencies with `npm install`
 3. Build the project with `npm run build`
 4. Start the editor with `npm start`
-5. Open http://localhost:1777 in an up to date Chrome or Edge browser
+5. Open http://localhost:1777 in an up to date **Chrome** or **Edge** browser (Firefox, Safari and other non-Chromium browsers do not currently support Web Serial)
 
 ## Development
 
@@ -28,7 +29,7 @@ The Offline version of the NanoPy editor is a [Vite](https://vitejs.dev/), [Reac
 1. Clone the repository and open the Project in a terminal or IDE
 2. Install dependencies with `npm install`
 3. Run the project in dev mode with `npm run dev`
-4. Open http://localhost:1777 in an up to date Chrome or Edge browser
+4. Open http://localhost:1777 in an up to date **Chrome** or **Edge** browser (Firefox, Safari and other non-Chromium browsers do not currently support Web Serial)
 
 In dev mode the project uses Hot Module Replacement (HMR) to update the current running instance if the code is changed.
 
