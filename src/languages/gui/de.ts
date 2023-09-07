@@ -50,6 +50,7 @@ const guiDe = {
   snapshot_view_title: 'Bildschirmfoto',
 
   /* File Browser */
+  file_browser_rename_file: 'File umbenennen',
   file_browser_path_too_long: 'Der Pfad + Name ist zu lang',
   file_browser_delete_text: 'Möchtest du diese Datei wirklich löschen?',
   file_browser_delete_title: `{{name}} löschen?`,

@@ -198,7 +198,7 @@ const FileBrowserModal = () => {
         ? `${selectedItem.path}/${selectedItem.name}`
         : selectedItem.name ?? '';
     const res = await showInputPopup(pathAndName, {
-      title: `Rename File`,
+      title: t('file_browser_rename_file'),
       acceptText: t('button_save'),
       declineText: t('button_cancel'),
       closeOnBackdrop: true,

@@ -50,6 +50,7 @@ const guiEn = {
   snapshot_view_title: 'Snapshot',
 
   /* File Browser */
+  file_browser_rename_file: 'Rename File',
   file_browser_path_too_long: 'The path + name is to long',
   file_browser_delete_text: 'Do you really want to delete this file?',
   file_browser_delete_title: `Delete {{name}}?`,

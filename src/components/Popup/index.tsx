@@ -60,8 +60,6 @@ const Popup = ({ content, options, onAccept, onDecline }: PopupProps) => {
 
   const { title = '', acceptText = 'OK', declineText, closeOnBackdrop = false } = options;
 
-  console.log('Popup', content, options);
-
   useEffect(() => {
     if (cardRef.current) {
       cardRef.current.focus();

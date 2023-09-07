@@ -50,6 +50,7 @@ const guiFr = {
   snapshot_view_title: "Capture d'écran",
 
   /* File Browser */
+  file_browser_rename_file: 'Renommer le fichier',
   file_browser_path_too_long: 'Le chemin + le nom est trop long',
   file_browser_delete_text: 'Voulez-vous vraiment supprimer ce fichier?',
   file_browser_delete_title: `Supprimer {{name}}?`,
