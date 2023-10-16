@@ -12,7 +12,7 @@ import { useAppDispatch, useAppSelector } from '../../../store/hooks';
 import { Script, changeName, saveUserScripts, setCode } from '../../../store/slices/editor';
 
 /* Images */
-import { ReactComponent as AddIcon } from '../../../assets/svg/icon_add_document.svg';
+import AddIcon from '../../../assets/svg/icon_add_document.svg?react';
 
 /* Styles */
 const UserCodesContainer = styled.div`

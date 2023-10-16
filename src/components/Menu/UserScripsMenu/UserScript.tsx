@@ -10,12 +10,12 @@ import Serial from '../../../serial';
 import { Script } from '../../../store/slices/editor';
 
 /* Images */
-import { ReactComponent as BinIcon } from '../../../assets/svg/icon_bin.svg';
-import { ReactComponent as PenIcon } from '../../../assets/svg/icon_pen.svg';
-import { ReactComponent as TickIcon } from '../../../assets/svg/icon_tick.svg';
-import { ReactComponent as CancelIcon } from '../../../assets/svg/icon_cancel.svg';
-import { ReactComponent as DownloadIcon } from '../../../assets/svg/icon_download.svg';
-import { ReactComponent as RemoveScriptIcon } from '../../../assets/svg/icon_remove_script.svg';
+import BinIcon from '../../../assets/svg/icon_bin.svg?react';
+import PenIcon from '../../../assets/svg/icon_pen.svg?react';
+import TickIcon from '../../../assets/svg/icon_tick.svg?react';
+import CancelIcon from '../../../assets/svg/icon_cancel.svg?react';
+import DownloadIcon from '../../../assets/svg/icon_download.svg?react';
+import RemoveScriptIcon from '../../../assets/svg/icon_remove_script.svg?react';
 
 /* Interfaces */
 export interface UserScriptProps {
