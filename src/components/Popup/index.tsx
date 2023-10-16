@@ -1,5 +1,5 @@
 import { createRoot } from 'react-dom/client';
-import { useEffect, useRef } from 'react';
+import { useEffect, useRef, ReactNode } from 'react';
 import { styled, ThemeProvider } from '@mui/material/styles';
 import themes from '../../theme';
 
@@ -16,7 +16,7 @@ import { store } from '../../store';
 
 /* Interfaces */
 interface PopupProps {
-  content: string;
+  content: ReactNode;
   options: {
     title?: string;
     acceptText?: string;
@@ -134,7 +134,7 @@ export const PopupContainer = () => {
 };
 
 // eslint-disable-next-line react-refresh/only-export-components
-export const showPopup = (content: string, options: PopupProps['options'] = {}) => {
+export const showPopup = (content: ReactNode, options: PopupProps['options'] = {}) => {
   const container = document.getElementById('popup_container');
   const root = createRoot(container!);
 

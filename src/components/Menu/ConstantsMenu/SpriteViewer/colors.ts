@@ -1,4 +1,6 @@
-const colors: [number, number, number][] = [
+export type Color = [number, number, number];
+
+const colors: Color[] = [
   [0, 0, 0],
   [8, 8, 8],
   [40, 40, 40],

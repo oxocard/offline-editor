@@ -39,6 +39,12 @@ const guiFr = {
   menu_user_code_rename: 'Renommer',
   menu_user_code_delete: 'Supprimer',
   menu_constants_title: 'Constantes',
+  menu_constants_new_sprite: 'Nouveau sprite',
+  menu_constants_upload_sprite: 'Télécharger un sprite',
+  menu_constants_new_sprite_popup_title: 'Ajouter un nouveau sprite',
+  menu_constants_new_sprite_popup_note: 'Remarque:',
+  menu_constants_new_sprite_popup_note_text:
+    "Le sprite sera inséré à la position actuelle du curseur dans l'éditeur.",
   menu_variables_title: 'Variables',
   menu_variables_global: 'Globaux',
   menu_variables_local: 'Locaux',
@@ -56,6 +62,11 @@ const guiFr = {
   file_browser_delete_title: `Supprimer {{name}}?`,
   file_browser_new_folder_text: 'Nouveau dossier',
   file_browser_new_folder_title: `Créer un nouveau dossier`,
+
+  /* Common */
+  common_name: 'Nom',
+  common_width: 'Largeur',
+  common_height: 'Hauteur',
 
   /* Buttons */
   button_save: 'Sauver',

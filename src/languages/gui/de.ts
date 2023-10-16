@@ -39,6 +39,12 @@ const guiDe = {
   menu_user_code_rename: 'Umbenennen',
   menu_user_code_delete: 'Löschen',
   menu_constants_title: 'Konstanten',
+  menu_constants_new_sprite: 'Neues Sprite',
+  menu_constants_upload_sprite: 'Sprite hochladen',
+  menu_constants_new_sprite_popup_title: 'Neues Sprite hinzufügen',
+  menu_constants_new_sprite_popup_note: 'Hinweis:',
+  menu_constants_new_sprite_popup_note_text:
+    'Das Sprite wird an der aktuellen Cursorposition im Editor eingefügt',
   menu_variables_title: 'Variablen',
   menu_variables_global: 'Globale Variablen',
   menu_variables_local: 'Lokale Variablen',
@@ -56,6 +62,11 @@ const guiDe = {
   file_browser_delete_title: `{{name}} löschen?`,
   file_browser_new_folder_text: 'Neuer Ordner',
   file_browser_new_folder_title: `Neuen Ordner erstellen`,
+
+  /* Common */
+  common_name: 'Name',
+  common_width: 'Breite',
+  common_height: 'Höhe',
 
   /* Buttons */
   button_save: 'Speichern',

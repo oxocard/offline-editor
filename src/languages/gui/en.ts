@@ -39,6 +39,12 @@ const guiEn = {
   menu_user_code_rename: 'Rename',
   menu_user_code_delete: 'Delete',
   menu_constants_title: 'Constants',
+  menu_constants_new_sprite: 'New sprite',
+  menu_constants_upload_sprite: 'upload sprite',
+  menu_constants_new_sprite_popup_title: 'Add new sprite',
+  menu_constants_new_sprite_popup_note: 'Note:',
+  menu_constants_new_sprite_popup_note_text:
+    'The sprite will be inserted at the current cursor position in the editor',
   menu_variables_title: 'Variables',
   menu_variables_global: 'Globals',
   menu_variables_local: 'Locals',
@@ -56,6 +62,11 @@ const guiEn = {
   file_browser_delete_title: `Delete {{name}}?`,
   file_browser_new_folder_text: 'New folder',
   file_browser_new_folder_title: `Create New Folder`,
+
+  /* Common */
+  common_name: 'Name',
+  common_width: 'Width',
+  common_height: 'Height',
 
   /* Buttons */
   button_save: 'Save',

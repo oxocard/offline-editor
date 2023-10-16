@@ -72,6 +72,13 @@ const Name = styled.h2`
   padding: 0.5rem;
   background-color: ${({ theme }: { theme: Theme }) => theme.colors.toolsHeaderBackground};
   color: ${({ theme }: { theme: Theme }) => theme.palette.text.primary};
+
+  display: flex;
+  justify-content: space-between;
+
+  .resolution {
+    color: ${({ theme }: { theme: Theme }) => theme.palette.text.primary};
+  }
 `;
 
 const EditButton = styled(Button)`
@@ -117,7 +124,10 @@ export default function Sprite({ sprite, onUpdateSprite }: SpriteProps) {
 
   return (
     <>
-      <Name>{sprite.name}</Name>
+      <Name>
+        <>{sprite.name}</>
+        <span className="resolution">{`${sprite.sizeX}x${sprite.sizeY} Pixel`}</span>
+      </Name>
       {editorOpen && <SpriteEditor sprite={sprite} onUpdateSprite={onUpdateSprite} />}
       <SpritesContainer>
         {!editorOpen && (
