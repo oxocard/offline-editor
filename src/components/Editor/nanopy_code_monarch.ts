@@ -565,6 +565,20 @@ const nanopyFunctions = [
   { name: 'readRequest', insertText: 'readRequest(${1:offset})', docLink: 'NWF000300' },
   { name: 'readRequestJSON', insertText: 'readRequestJSON(${1:jsonPath})', docLink: 'NWF000400' },
   { name: 'postRequest', insertText: 'postRequest(${1:url}, ${2:body})', docLink: 'NWF000500' },
+  { name: 'selectCertificate', insertText: 'selectCertificate(${1:path})', docLink: 'NWF000600' },
+  {
+    name: 'connectMQTT',
+    insertText: 'connectMQTT(${1:uri}, ${1:username}, ${1:password})',
+    docLink: 'NWF000700',
+  },
+  { name: 'disconnectMQTT', insertText: 'disconnectMQTT()', docLink: 'NWF000800' },
+  { name: 'configMQTT', insertText: 'configMQTT()', docLink: 'NWF000850' },
+  { name: 'publishMQTT', insertText: 'publishMQTT(${1:topic}, ${1:data})', docLink: 'NWF000900' },
+  { name: 'subscribeMQTT', insertText: 'subscribeMQTT(${1:topic})', docLink: 'NWF001000' },
+  { name: 'unsubscribeMQTT', insertText: 'unsubscribeMQTT(${1:topic})', docLink: 'NWF001100' },
+  { name: 'hasMQTTMessage', insertText: 'hasMQTTMessage()', docLink: 'NWF001200' },
+  { name: 'getMQTTTopic', insertText: 'getMQTTTopic()', docLink: 'NWF001300' },
+  { name: 'getMQTTData', insertText: 'getMQTTData()', docLink: 'NWF001400' },
 ];
 
 /* Monaco Editor Monarch definition for the NanoPy language.
