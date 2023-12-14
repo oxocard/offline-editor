@@ -130,6 +130,20 @@ const nanopyConstants = [
   'C_ARTICULATION_MARCATO',
   'C_ARTICULATION_LEGATO',
   'C_NOX',
+  'C_UART_DATA_BITS_5',
+  'C_UART_DATA_BITS_6',
+  'C_UART_DATA_BITS_7',
+  'C_UART_DATA_BITS_8',
+  'C_UART_PARITY_DISABLE',
+  'C_UART_PARITY_EVEN',
+  'C_UART_PARITY_ODD',
+  'C_UART_STOP_BITS_1',
+  'C_UART_STOP_BITS_1_5',
+  'C_UART_STOP_BITS_2',
+  'C_SPI_MODE_0',
+  'C_SPI_MODE_1',
+  'C_SPI_MODE_2',
+  'C_SPI_MODE_3',
 ];
 
 const nanopyFunctions = [
@@ -169,7 +183,13 @@ const nanopyFunctions = [
   { name: 'update', insertText: 'update()', docLink: 'F004300' },
   { name: 'clear', insertText: 'clear()', docLink: 'F004350' },
   { name: 'background', insertText: 'background(${1:r}, ${2:g}, ${3:b})', docLink: 'F004400' },
+  {
+    name: 'backgroundHSV',
+    insertText: 'backgroundHSV(${1:h}, ${2:s}, ${3:v})',
+    docLink: 'F004450',
+  },
   { name: 'stroke', insertText: 'stroke(${1:r}, ${2:g}, ${3:b})', docLink: 'F004500' },
+  { name: 'strokeHSV', insertText: 'strokeHSV(${1:h}, ${2:s}, ${3:v})', docLink: 'F004550' },
   {
     name: 'strokeWeight',
     insertText: 'strokeWeight(${1:w})',
@@ -177,6 +197,7 @@ const nanopyFunctions = [
   },
   { name: 'noStroke', insertText: 'noStroke()', docLink: 'F004700' },
   { name: 'fill', insertText: 'fill(${1:r}, ${2:g}, ${3:b})', docLink: 'F004800' },
+  { name: 'fillHSV', insertText: 'fillHSV(${1:h}, ${2:s}, ${3:v})', docLink: 'F004850' },
   { name: 'noFill', insertText: 'noFill()', docLink: 'F004900' },
   {
     name: 'drawLine',
@@ -199,13 +220,6 @@ const nanopyFunctions = [
       'drawQuadrangle(${1:x0}, ${2:y0}, ${3:x1}, ${4:y1}, ${5:x2}, ${6:y2}, ${7:x3}, ${8:y3})',
     docLink: 'F005300',
   },
-  { name: 'fillHSV', insertText: 'fillHSV(${1:h}, ${2:s}, ${3:v})', docLink: 'F005400' },
-  {
-    name: 'backgroundHSV',
-    insertText: 'backgroundHSV(${1:h}, ${2:s}, ${3:v})',
-    docLink: 'F005500',
-  },
-  { name: 'strokeHSV', insertText: 'strokeHSV(${1:h}, ${2:s}, ${3:v})', docLink: 'F005600' },
   { name: 'drawCircle', insertText: 'drawCircle(${1:x}, ${2:y}, ${3:r})', docLink: 'F005700' },
   {
     name: 'drawEllipse',
@@ -228,15 +242,9 @@ const nanopyFunctions = [
     insertText: 'drawImageMono(${1:x}, ${2:y}, ${3:w}, ${4:h}, ${5:buf})',
     docLink: 'F006100',
   },
-  { name: 'drawIcon', insertText: 'drawIcon(${1:x}, ${2:y}, ${3:size}, ${4:id})' },
   {
     name: 'drawImageMonoCentered',
     insertText: 'drawImageMonoCentered(${1:x}, ${2:y}, ${3:w}, ${4:h}), ${5:img})',
-    docLink: 'F006150',
-  },
-  {
-    name: 'drawSprite24',
-    insertText: 'drawSprite24(${1:x}, ${2:y}, ${3:rotationFactor}, ${4:scaleFactor}), ${5:img})',
     docLink: 'F006150',
   },
   {
@@ -270,7 +278,7 @@ const nanopyFunctions = [
   { name: 'push', insertText: 'push()', docLink: 'F007100' },
   { name: 'pop', insertText: 'pop()', docLink: 'F007200' },
   { name: 'rotate', insertText: 'rotate(${1:rad})', docLink: 'F007300' },
-  { name: 'scale', insertText: 'scale(${1:v})' },
+  { name: 'scale', insertText: 'scale(${1:v})', docLink: 'F007350' },
   { name: 'translate', insertText: 'translate(${1:x}, ${2:y})', docLink: 'F007400' },
   {
     name: 'clipRectangle',
@@ -278,8 +286,6 @@ const nanopyFunctions = [
     docLink: 'F007410',
   },
   { name: 'noClipping', insertText: 'noClipping()', docLink: 'F007420' },
-  { name: 'tone', insertText: 'tone(${1:frequency}, ${2:duration})', docLink: 'F007600' },
-  { name: 'noTone', insertText: 'noTone()', docLink: 'F007700' },
   {
     name: 'getAcceleration',
     insertText: 'getAcceleration()',
@@ -322,6 +328,8 @@ const nanopyFunctions = [
   { name: 'runScript', insertText: 'runScript(${1:path})', docLink: 'SYSF001000' },
   { name: 'textInput', insertText: 'textInput(${1:title}, ${2:text})', docLink: 'SYSF001100' },
   { name: 'getHardwareType', insertText: 'getHardwareType()', docLink: 'SYSF001200' },
+  { name: 'getLanguage', insertText: 'getLanguage()', docLink: 'SYSF001300' },
+  { name: 'setLanguage', insertText: 'setLanguage(${1:lang})', docLink: 'SYSF001400' },
 
   { name: 'getTemperature', insertText: 'getTemperature()', docLink: 'SF000100' },
   { name: 'getHumidity', insertText: 'getHumidity()', docLink: 'SF000200' },
@@ -339,11 +347,13 @@ const nanopyFunctions = [
   { name: 'getMicrophoneFrequency', insertText: 'getMicrophoneFrequency()', docLink: 'SF001200' },
 
   { name: 'open', insertText: 'open(${1:type}, ${2:path})', docLink: 'FF000100' },
+  { name: 'writeLine', insertText: 'writeLine(${1:line})', docLink: 'FF000150' },
   { name: 'write', insertText: 'write(${1:val})', docLink: 'FF000200' },
   { name: 'writeByte', insertText: 'writeByte(${1:val})', docLink: 'FF000300' },
   { name: 'writeInt', insertText: 'writeInt(${1:val})', docLink: 'FF000400' },
   { name: 'writeLong', insertText: 'writeLong(${1:val})', docLink: 'FF000500' },
   { name: 'writeFloat', insertText: 'writeFloat(${1:val})', docLink: 'FF000600' },
+  { name: 'readLine', insertText: 'readLine()', docLink: 'FF000650' },
   { name: 'read', insertText: 'read()', docLink: 'FF000700' },
   { name: 'readByte', insertText: 'readByte()', docLink: 'FF000800' },
   { name: 'readInt', insertText: 'readInt()', docLink: 'FF000900' },
@@ -356,6 +366,8 @@ const nanopyFunctions = [
   { name: 'deleteFile', insertText: 'deleteFile(${1:path})', docLink: 'FF001400' },
   { name: 'renameFile', insertText: 'renameFile(${1:path}, ${2:newPath})', docLink: 'FF001500' },
 
+  { name: 'tone', insertText: 'tone(${1:frequency}, ${2:duration})', docLink: 'AF000100' },
+  { name: 'noTone', insertText: 'noTone()', docLink: 'AF000200' },
   { name: 'beginSong', insertText: 'beginSong()', docLink: 'AF000300' },
   { name: 'note', insertText: 'note(${1:note}, ${2:durFactor})', docLink: 'AF000400' },
   {
@@ -549,6 +561,81 @@ const nanopyFunctions = [
     insertText: 'applyDigitalLeds()',
     docLink: 'IOF002100',
   },
+  {
+    name: 'initUART',
+    insertText: 'initUART(${1:pinNrTx},${2:pinNrRx},${3:baudrate})',
+    docLink: 'IOF002200',
+  },
+  {
+    name: 'configUART',
+    insertText: 'configUART(${1:dataBits},${2:parity},${3:stopBits})',
+    docLink: 'IOF002300',
+  },
+  {
+    name: 'getUARTDataLength',
+    insertText: 'getUARTDataLength()',
+    docLink: 'IOF002400',
+  },
+  {
+    name: 'readUART',
+    insertText: 'readUART(${1:size})',
+    docLink: 'IOF002500',
+  },
+  {
+    name: 'readLineUART',
+    insertText: 'readLineUART()',
+    docLink: 'IOF002600',
+  },
+  {
+    name: 'writeUART',
+    insertText: 'writeUART(${1:size},${2:data})',
+    docLink: 'IOF002700',
+  },
+  {
+    name: 'writeLineUART',
+    insertText: 'writeLineUART(${1:data})',
+    docLink: 'IOF002800',
+  },
+  {
+    name: 'initSPI',
+    insertText: 'initSPI(${1:mode},${2:speed})',
+    docLink: 'IOF002900',
+  },
+  {
+    name: 'writeSPI',
+    insertText: 'writeSPI(${1:size},${2:data})',
+    docLink: 'IOF003000',
+  },
+  {
+    name: 'readSPI',
+    insertText: 'readSPI(${1:size})',
+    docLink: 'IOF003100',
+  },
+  {
+    name: 'transferSPI',
+    insertText: 'transferSPI(${1:size},${2:txData})',
+    docLink: 'IOF003200',
+  },
+  {
+    name: 'getSPIByte',
+    insertText: 'getSPIByte()',
+    docLink: 'IOF003300',
+  },
+  {
+    name: 'getSPIInt',
+    insertText: 'getSPIInt()',
+    docLink: 'IOF003400',
+  },
+  {
+    name: 'getSPILong',
+    insertText: 'getSPILong()',
+    docLink: 'IOF003500',
+  },
+  {
+    name: 'setSPIReadBufferIndex',
+    insertText: 'setSPIReadBufferIndex(${1:index})',
+    docLink: 'IOF003600',
+  },
 
   { name: 'strToBool', insertText: 'strToBool(${1:str})', docLink: 'STRF000100' },
   { name: 'strToInt', insertText: 'strToInt(${1:str})', docLink: 'STRF000200' },
@@ -565,6 +652,12 @@ const nanopyFunctions = [
   { name: 'readRequest', insertText: 'readRequest(${1:offset})', docLink: 'NWF000300' },
   { name: 'readRequestJSON', insertText: 'readRequestJSON(${1:jsonPath})', docLink: 'NWF000400' },
   { name: 'postRequest', insertText: 'postRequest(${1:url}, ${2:body})', docLink: 'NWF000500' },
+  {
+    name: 'addRequestHeader',
+    insertText: 'addRequestHeader(${1:key}, ${2:value})',
+    docLink: 'NWF000550',
+  },
+  { name: 'clearRequestHeaders', insertText: 'clearRequestHeaders()', docLink: 'NWF000570' },
   { name: 'selectCertificate', insertText: 'selectCertificate(${1:path})', docLink: 'NWF000600' },
   {
     name: 'connectMQTT',
