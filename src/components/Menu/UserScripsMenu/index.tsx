@@ -71,8 +71,13 @@ function UserScriptsMenu() {
   const { t } = useTranslation();
 
   const currentScriptName = useAppSelector((state) => state.editor.fileName);
-  const userScripts = useAppSelector((state) => state.editor.userScripts);
   const fileStructure = useAppSelector((state) => state.spiffs.fileStructure);
+
+  let userScripts = useAppSelector((state) => state.editor.userScripts);
+
+  if (userScripts.length > 1) {
+    userScripts = [...userScripts].sort((a, b) => b.changedAt - a.changedAt);
+  }
 
   const deviceScripts =
     fileStructure.folders?.find((f) => f.name === 'user_scripts')?.files?.map((f) => f.name) || [];
@@ -80,6 +85,7 @@ function UserScriptsMenu() {
   /* Function to add numbers after the given name in care
      there is already a script with that name */
   const findNameNumber = (name: string): string => {
+    console.log(userScripts);
     if (userScripts.find((script) => script.name === name)) {
       let cnt = 2;
       while (userScripts.find((script) => script.name === `${name} ${cnt}`)) {
@@ -115,7 +121,7 @@ function UserScriptsMenu() {
         } else {
           const newScript: Script = {
             id: crypto.randomUUID(),
-            name: findNameNumber('My new script'),
+            name: 'My new script',
             content: '',
             changedAt: Date.now(),
           };

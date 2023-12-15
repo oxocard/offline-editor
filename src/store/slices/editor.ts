@@ -128,7 +128,7 @@ export const editor = createSlice({
           /* Change the code of the script */
           const newUserScripts = state.userScripts.map((script) => {
             if (script.name === state.fileName) {
-              return { ...script, content: window.btoa(newCode) };
+              return { ...script, content: window.btoa(newCode), changedAt: Date.now() };
             } else {
               return script;
             }
