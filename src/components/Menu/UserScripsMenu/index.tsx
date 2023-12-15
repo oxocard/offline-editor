@@ -81,7 +81,7 @@ function UserScriptsMenu() {
      there is already a script with that name */
   const findNameNumber = (name: string): string => {
     if (userScripts.find((script) => script.name === name)) {
-      let cnt = 1;
+      let cnt = 2;
       while (userScripts.find((script) => script.name === `${name} ${cnt}`)) {
         cnt++;
       }
@@ -106,6 +106,23 @@ function UserScriptsMenu() {
       closeOnBackdrop: true,
     });
     if (res) {
+      /* If the current script is deleted, load the first one if its not the current one */
+      if (name === currentScriptName) {
+        if (userScripts[0].name !== name) {
+          loadUserCode(userScripts[0].id);
+        } else if (userScripts.length > 1) {
+          loadUserCode(userScripts[1].id);
+        } else {
+          const newScript: Script = {
+            id: crypto.randomUUID(),
+            name: findNameNumber('My new script'),
+            content: '',
+            changedAt: Date.now(),
+          };
+          dispatch(setCode(newScript));
+        }
+      }
+
       const newUserScripts = userScripts.filter((script) => script.id !== id);
       dispatch(saveUserScripts(newUserScripts));
 
