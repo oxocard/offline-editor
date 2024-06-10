@@ -109,7 +109,7 @@ function SerialConnector() {
                 dispatch(setShowFileBrowser(true));
               }}
             >
-              File Browser
+              {t('file_browser_title')}
             </DeviceActionButton>
             <FileBrowser />
           </DeviceActionContainer>
