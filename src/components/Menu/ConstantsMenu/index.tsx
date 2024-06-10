@@ -9,9 +9,10 @@ import SpriteViewer from './SpriteViewer';
 /* Images */
 
 /* Styles */
-const VariablesWrapper = styled.div`
+const ConstantsWrapper = styled.div`
   height: 100%;
   overflow: auto;
+  overflow-x: hidden;
 
   display: flex;
   flex-direction: column;
@@ -19,10 +20,10 @@ const VariablesWrapper = styled.div`
 
 function ConstantsMenu() {
   return (
-    <VariablesWrapper>
+    <ConstantsWrapper>
       <ConstantViewer />
       <SpriteViewer />
-    </VariablesWrapper>
+    </ConstantsWrapper>
   );
 }
 
