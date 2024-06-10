@@ -74,6 +74,13 @@ const nanopyConstants = [
   'C_PIN_05',
   'C_PIN_06',
   'C_PIN_07',
+  'C_PIN_08',
+  'C_PIN_09',
+  'C_PIN_10',
+  'C_PIN_IO32',
+  'C_PIN_IO33',
+  'C_PIN_SDO',
+  'C_PIN_SDI',
   'C_PIN_MISO',
   'C_PIN_MOSI',
   'C_PIN_SCK',
@@ -144,6 +151,9 @@ const nanopyConstants = [
   'C_SPI_MODE_1',
   'C_SPI_MODE_2',
   'C_SPI_MODE_3',
+  'TEXT_ALIGN_LEFT',
+  'TEXT_ALIGN_CENTER',
+  'TEXT_ALIGN_RIGHT ',
 ];
 
 const nanopyFunctions = [
@@ -210,6 +220,11 @@ const nanopyFunctions = [
     docLink: 'F005100',
   },
   {
+    name: 'drawRectangleRounded',
+    insertText: 'drawRectangleRounded(${1:x}, ${2:y}, ${3:w}, ${4:h}, ${5:radius})',
+    docLink: 'F005150',
+  },
+  {
     name: 'drawTriangle',
     insertText: 'drawTriangle(${1:x0}, ${2:y0}, ${3:x1}, ${4:y1}, ${5:x2}, ${6:y2})',
     docLink: 'F005200',
@@ -234,8 +249,13 @@ const nanopyFunctions = [
   { name: 'drawPixel', insertText: 'drawPixel(${1:x}, ${2:y})', docLink: 'F006000' },
   {
     name: 'drawSprite',
-    insertText: 'drawSprite(${1:x}, ${2:y} , ${3:w} , ${4:h} , ${5:buf})',
+    insertText: 'drawSprite(${1:x}, ${2:y}, ${3:w}, ${4:h}, ${5:buf})',
     docLink: 'F006050',
+  },
+  {
+    name: 'drawSpriteScaled',
+    insertText: 'drawSpriteScaled(${1:x}, ${2:y}, ${3:w}, ${4:h}, ${5:s}, ${6:data})',
+    docLink: 'F006075',
   },
   {
     name: 'drawImageMono',
@@ -256,6 +276,7 @@ const nanopyFunctions = [
   { name: 'endShape', insertText: 'endShape(${1:closed})', docLink: 'F006900' },
   { name: 'addVertex', insertText: 'addVertex(${1:x}, ${2:y})', docLink: 'F007000' },
   { name: 'drawText', insertText: 'drawText(${1:x}, ${2:y}, ${3:text})', docLink: 'F006300' },
+  { name: 'textAlignment', insertText: 'textAlignment(${1:alignment})', docLink: 'F006325' },
   {
     name: 'drawTextCentered',
     insertText: 'drawTextCentered(${1:x}, ${2:y}, ${3:text})',
@@ -341,6 +362,12 @@ const nanopyFunctions = [
   { name: 'getCO2', insertText: 'getCO2()', docLink: 'SF000600' },
   { name: 'getIAQ', insertText: 'getIAQ()', docLink: 'SF000700' },
   { name: 'getTVOC', insertText: 'getTVOC()', docLink: 'SF000800' },
+  { name: 'getVOC', insertText: 'getVOC()', docLink: 'SF000810' },
+  { name: 'getVOCIndex', insertText: 'getVOCIndex()', docLink: 'SF000820' },
+  { name: 'getNOx', insertText: 'getNOx()', docLink: 'SF000830' },
+  { name: 'getNOxIndex', insertText: 'getNOxIndex()', docLink: 'SF000840' },
+  { name: 'getTOF8x8', insertText: 'getTOF8x8()', docLink: 'SF000850' },
+  { name: 'getTOF4x4', insertText: 'getTOF4x4()', docLink: 'SF000860' },
   { name: 'getETOH', insertText: 'getETOH()', docLink: 'SF000900' },
   { name: 'getMicrophoneAmplitude', insertText: 'getMicrophoneAmplitude()', docLink: 'SF001000' },
   { name: 'getMicrophoneDecibel', insertText: 'getMicrophoneDecibel()', docLink: 'SF001100' },
@@ -647,6 +674,10 @@ const nanopyFunctions = [
     insertText: 'strSubstring(${1:str}, ${2:from}, ${3:length})',
     docLink: 'STRF000600',
   },
+  { name: 'isEqual', insertText: 'isEqual(${1:str1}, ${2:str2})', docLink: 'STRF000700' },
+  { name: 'strCompare', insertText: 'strCompare(${1:str1}, ${2:str2})', docLink: 'STRF000800' },
+  { name: 'byteToHex', insertText: 'byteToHex(${1:value})', docLink: 'STRF000900' },
+  { name: 'hexToByte', insertText: 'hexToByte(${1:value})', docLink: 'STRF001000' },
   { name: 'getRequest', insertText: 'getRequest(${1:url})', docLink: 'NWF000100' },
   { name: 'readRequestLength', insertText: 'readRequestLength()', docLink: 'NWF000200' },
   { name: 'readRequest', insertText: 'readRequest(${1:offset})', docLink: 'NWF000300' },
