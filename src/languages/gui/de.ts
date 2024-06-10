@@ -56,6 +56,11 @@ const guiDe = {
   snapshot_view_title: 'Bildschirmfoto',
 
   /* File Browser */
+  file_browser_title: 'Datei Browser',
+  file_browser_current_path: 'Aktueller Pfad:',
+  file_browser_new_folder: 'Neuer Ordner',
+  file_browser_memory_usage: 'Speicherverbrauch',
+  file_browser_memory_of: 'von',
   file_browser_rename_file: 'File umbenennen',
   file_browser_path_too_long: 'Der Pfad + Name ist zu lang',
   file_browser_delete_text: 'Möchtest du diese Datei wirklich löschen?',
@@ -82,6 +87,8 @@ const guiDe = {
   button_remove: 'Entfernen',
   button_download: 'Herunterladen',
   button_close: 'Schliessen',
+  button_rename: 'Umbenennen',
+  button_upload: 'Hochladen',
 };
 
 export default guiDe;

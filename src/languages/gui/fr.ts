@@ -56,6 +56,11 @@ const guiFr = {
   snapshot_view_title: "Capture d'écran",
 
   /* File Browser */
+  file_browser_title: 'Navigateur de fichiers',
+  file_browser_current_path: 'Chemin actuel:',
+  file_browser_new_folder: 'Nouveau dossier',
+  file_browser_memory_usage: 'Utilisation mémoire',
+  file_browser_memory_of: 'de',
   file_browser_rename_file: 'Renommer le fichier',
   file_browser_path_too_long: 'Le chemin + le nom est trop long',
   file_browser_delete_text: 'Voulez-vous vraiment supprimer ce fichier?',
@@ -82,6 +87,8 @@ const guiFr = {
   button_remove: 'Supprimer',
   button_download: 'Télécharger',
   button_close: 'Fermer',
+  button_rename: 'Renommer',
+  button_upload: 'Télécharger',
 };
 
 export default guiFr;

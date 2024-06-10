@@ -338,7 +338,7 @@ const FileBrowserModal = () => {
           }}
         >
           <CardHeader
-            title={<h3>File Browser</h3>}
+            title={<h3>{t('file_browser_title')}</h3>}
             action={
               <>
                 <Tooltip title="Reload">
@@ -359,7 +359,7 @@ const FileBrowserModal = () => {
                   renderFileStructure(fileStructure)}
               </div>
               <div className="file_actions">
-                <h3>Current Path:</h3>
+                <h3>{t('file_browser_current_path')}</h3>
                 <p>
                   {selectedItem.path}
                   <span style={{ margin: '0px 0.25rem' }}>/</span>
@@ -375,7 +375,7 @@ const FileBrowserModal = () => {
                       fullWidth={false}
                       onClick={onRenameFile}
                     >
-                      Rename
+                      {t('button_rename')}
                     </Button>
                     <Button
                       color="inherit"
@@ -384,7 +384,7 @@ const FileBrowserModal = () => {
                       fullWidth={false}
                       onClick={onDownloadFile}
                     >
-                      Download
+                      {t('button_download')}
                     </Button>
                     <Button
                       color="error"
@@ -393,7 +393,7 @@ const FileBrowserModal = () => {
                       fullWidth={false}
                       onClick={onDeleteFile}
                     >
-                      Delete
+                      {t('button_delete')}
                     </Button>
                   </>
                 )}
@@ -414,7 +414,7 @@ const FileBrowserModal = () => {
                     fullWidth={false}
                     component="span"
                   >
-                    Upload
+                    {t('button_upload')}
                   </Button>
                 </label>
                 <Button
@@ -424,26 +424,25 @@ const FileBrowserModal = () => {
                   fullWidth={false}
                   onClick={onCreateFolder}
                 >
-                  New Folder
+                  {t('file_browser_new_folder')}
                 </Button>
               </div>
             </ContentWrapper>
           </CardContent>
           <CardContent>
             <Box sx={{ display: 'flex', alignItems: 'center' }}>
-              <Box sx={{ minWidth: 110 }}>
+              <Box sx={{ marginRight: 1 }}>
                 <Typography variant="body2" color="text.secondary">
                   Memory Usage
                 </Typography>
               </Box>
-              <Box sx={{ width: '100%', mr: 1 }}>
+              <Box sx={{ flex: '1', mr: 1 }}>
                 <LinearProgress variant="determinate" color="inherit" value={spacePercentage} />
               </Box>
               <Box sx={{ minWidth: 100 }}>
-                <Typography
-                  variant="body2"
-                  color="text.secondary"
-                >{`${spacePercentage}% of 3,6 MB`}</Typography>
+                <Typography variant="body2" color="text.secondary">{`${spacePercentage}% ${t(
+                  'file_browser_memory_of'
+                )} 3.6 MB`}</Typography>
               </Box>
             </Box>
           </CardContent>

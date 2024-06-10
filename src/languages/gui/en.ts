@@ -56,6 +56,11 @@ const guiEn = {
   snapshot_view_title: 'Snapshot',
 
   /* File Browser */
+  file_browser_title: 'File Browser',
+  file_browser_current_path: 'Current Path:',
+  file_browser_new_folder: 'New Folder',
+  file_browser_memory_usage: 'Memory Usage',
+  file_browser_memory_of: 'of',
   file_browser_rename_file: 'Rename File',
   file_browser_path_too_long: 'The path + name is to long',
   file_browser_delete_text: 'Do you really want to delete this file?',
@@ -82,6 +87,8 @@ const guiEn = {
   button_remove: 'Remove',
   button_download: 'Download',
   button_close: 'Close',
+  button_rename: 'Rename',
+  button_upload: 'Upload',
 };
 
 export default guiEn;
