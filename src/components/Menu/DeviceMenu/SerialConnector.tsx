@@ -87,7 +87,7 @@ function SerialConnector() {
           variant="contained"
           color="success"
           sx={{
-            width: '100%',
+            width: '95%',
             mt: 2,
           }}
           onClick={onSerialConnect}
@@ -117,7 +117,7 @@ function SerialConnector() {
             variant="outlined"
             color="error"
             sx={{
-              width: '100%',
+              width: '95%',
               mt: 2,
             }}
             onClick={onSerialDisconnect}
