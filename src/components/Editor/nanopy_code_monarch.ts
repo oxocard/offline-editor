@@ -20,6 +20,8 @@ const nanopyKeywords = [
   'true',
   'false',
   'import',
+  'break',
+  'continue',
 ];
 
 const nanopyConstants = [
@@ -321,6 +323,11 @@ const nanopyFunctions = [
     name: 'returnToMenu',
     insertText: 'returnToMenu()',
     docLink: 'F007900',
+  },
+  {
+    name: 'exit',
+    insertText: 'exit()',
+    docLink: 'F007950',
   },
   { name: 'restart', insertText: 'restart()', docLink: 'F008000' },
   {
