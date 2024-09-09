@@ -17,7 +17,7 @@ import { changeCode } from '../../../../store/slices/editor';
 /* Styles */
 const ConstantsWrapper = styled.div`
   flex-shrink: 0;
-  padding: 0px 1rem 1rem 0rem;
+  padding: 0px 2rem 1rem 0rem;
   min-height: 5rem;
   /* font-size: 1.4rem; */
   overflow: hidden;
@@ -37,7 +37,7 @@ const ConstantsWrapper = styled.div`
 
 const codeToConstObjects = (code: string): Constant[] => {
   /* Get all lines starting with the word const*/
-  const cons = code.match(/const ?.+/g);
+  const cons = code.match(/(^|\n) *const +.+/g);
   if (cons) {
     const constantObject = cons.map((c) => {
       let type;
@@ -45,14 +45,14 @@ const codeToConstObjects = (code: string): Constant[] => {
       let value;
       let valueString = '';
       /* Get the constants name */
-      let name = c.match(/const [a-zA-Z_0-9]+/)?.at(0) || '';
-      if (name) name = name.replace('const ', '');
+      let name = c.match(/const +[a-zA-Z_0-9]+/)?.at(0) || '';
+      if (name) name = name.replace(/const +/, '');
       else return null;
 
-      const hexRgb = c.match(/= 0x([A-F0-9]{6})/);
+      const hexRgb = c.match(/= +0x([A-F0-9]{6})/);
       if (hexRgb) {
-        if (c.match(/# (HEX_RGB)/)) {
-          valueString = hexRgb[0].replace('= ', '');
+        if (c.match(/# +(HEX_RGB)/)) {
+          valueString = hexRgb[0].replace(/= +/, '');
           value = valueString;
           type = 'hexRgb';
         } else {
@@ -60,17 +60,17 @@ const codeToConstObjects = (code: string): Constant[] => {
         }
       } else {
         /* Get the constants value */
-        value = c.match(/= [+-]?([0-9]*[.])?[0-9]+/);
+        value = c.match(/= +[+-]?([0-9]*[.])?[0-9]+/);
         /* check if it is a number */
         if (value) {
-          valueString = value[0].replace('= ', '') || '';
+          valueString = value[0].replace(/= +/, '') || '';
           value = +valueString;
           /* Differentiate between numbers and floats */
-          if (c.match(/# [-]?[0-9]+[ ]?..[ ]?[-]?[0-9]+/)) {
+          if (c.match(/# +[-]?[0-9]+[ ]?..[ ]?[-]?[0-9]+/)) {
             type = 'number';
-          } else if (c.match(/# [-]?([0-9]*[.])?[0-9]+[ ]?..[ ]?[-]?([0-9]*[.])?[0-9]+/)) {
+          } else if (c.match(/# +[-]?([0-9]*[.])?[0-9]+[ ]?..[ ]?[-]?([0-9]*[.])?[0-9]+/)) {
             type = 'float';
-          } else if (c.match(/# (HUE)/)) {
+          } else if (c.match(/# +(HUE)/)) {
             type = 'hue';
           } else {
             return null;
@@ -78,9 +78,9 @@ const codeToConstObjects = (code: string): Constant[] => {
           if (type === 'number' || type === 'float') {
             /* Get the minimal and maximal values */
             const ranges = c
-              ?.match(/# [-]?([0-9]*[.])?[0-9]+[ ]?..[ ]?[-]?([0-9]*[.])?[0-9]+/)
+              ?.match(/# +[-]?([0-9]*[.])?[0-9]+[ ]?..[ ]?[-]?([0-9]*[.])?[0-9]+/)
               ?.at(0)
-              ?.replace('# ', '')
+              ?.replace(/# +/, '')
               .split('..');
             if (
               !ranges ||
@@ -94,9 +94,9 @@ const codeToConstObjects = (code: string): Constant[] => {
           }
         } else {
           /* If it is not a number, check if it is a boolean */
-          value = c.match(/= (true|false){1}/);
+          value = c.match(/= +(true|false){1}/);
           type = 'boolean';
-          if (value?.length) value = value[0].replace('= ', '') === 'true';
+          if (value?.length) value = value[0].replace(/= +/, '') === 'true';
           else return null;
         }
       }
