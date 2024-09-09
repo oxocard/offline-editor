@@ -75,4 +75,8 @@ body {
   font-size: 1.4rem;
 }
 
+.Toastify__toast-container--bottom-right:has(div.cartridge_toast) {
+    width: auto;
+}
+
 `;

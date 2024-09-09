@@ -55,6 +55,9 @@ const guiDe = {
   /* Snapshot view */
   snapshot_view_title: 'Bildschirmfoto',
 
+  /* Cartridge */
+  cartridge_info_title: '{{name}} Cartridge Verbunden',
+
   /* File Browser */
   file_browser_title: 'Datei Browser',
   file_browser_current_path: 'Aktueller Pfad:',

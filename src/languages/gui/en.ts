@@ -55,6 +55,9 @@ const guiEn = {
   /* Snapshot view */
   snapshot_view_title: 'Snapshot',
 
+  /* Cartridge */
+  cartridge_info_title: '{{name}} Cartridge Connected',
+
   /* File Browser */
   file_browser_title: 'File Browser',
   file_browser_current_path: 'Current Path:',

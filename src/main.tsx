@@ -15,7 +15,8 @@ import { loadLayout } from './store/slices/layout.ts';
 
 /* Styles */
 import { CssBaseline } from '@mui/material';
-import Serial from './serial/index.ts';
+import Serial from './serial/index.tsx';
+import 'react-toastify/dist/ReactToastify.css';
 
 batch(() => {
   store.dispatch(loadClient());

@@ -55,6 +55,9 @@ const guiFr = {
   /* Snapshot view */
   snapshot_view_title: "Capture d'écran",
 
+  /* Cartridge */
+  cartridge_info_title: 'Cartouche {{name}} connectée',
+
   /* File Browser */
   file_browser_title: 'Navigateur de fichiers',
   file_browser_current_path: 'Chemin actuel:',

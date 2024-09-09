@@ -9,11 +9,16 @@ import { base64ToBytes } from '../utility/base64';
 import { setSnapshotAvailable, setSnapshotLoading } from '../store/slices/layout';
 import { setSpiffs, setSpiffsSize } from '../store/slices/spiffs';
 import download from '../utility/fileDownload';
+import { toast, Id } from 'react-toastify';
+
+/* Components */
+import CartridgeInfo from '../components/CartridgeInfo';
 
 export default class Serial {
   private static _instance: Serial;
   private _log = debug('nanopy:serial');
   private _serialWorker: Worker | null = null;
+  private _cartridgeToastId: null | Id = null;
 
   private constructor() {
     this._log('Serial class instantiated');
@@ -166,6 +171,25 @@ export default class Serial {
       case 'get_time':
         this._log('Get time received');
         this.sendUtc();
+        break;
+
+      case 'cartridge_connected':
+        this._log('Cartridge connected received', message.content);
+        this._cartridgeToastId = toast.info(<CartridgeInfo cartridge={message.content} />, {
+          autoClose: 10000,
+          hideProgressBar: false,
+          closeOnClick: false,
+          icon: false,
+          className: 'cartridge_toast',
+        });
+        break;
+
+      case 'cartridge_disconnected':
+        this._log('Cartridge disconnected received');
+        if (this._cartridgeToastId) {
+          toast.dismiss(this._cartridgeToastId);
+          this._cartridgeToastId = null;
+        }
         break;
 
       default:
