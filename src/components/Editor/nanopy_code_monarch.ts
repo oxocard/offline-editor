@@ -358,6 +358,19 @@ const nanopyFunctions = [
   { name: 'getHardwareType', insertText: 'getHardwareType()', docLink: 'SYSF001200' },
   { name: 'getLanguage', insertText: 'getLanguage()', docLink: 'SYSF001300' },
   { name: 'setLanguage', insertText: 'setLanguage(${1:lang})', docLink: 'SYSF001400' },
+  { name: 'isCartridgeConnected', insertText: 'isCartridgeConnected()', docLink: 'SYSF001500' },
+  { name: 'isCartridgeEmpty', insertText: 'isCartridgeEmpty()', docLink: 'SYSF001600' },
+  {
+    name: 'pauseCartridgeDetection',
+    insertText: 'pauseCartridgeDetection()',
+    docLink: 'SYSF001700',
+  },
+  {
+    name: 'resumeCartridgeDetection',
+    insertText: 'resumeCartridgeDetection()',
+    docLink: 'SYSF001800',
+  },
+  { name: 'getSystemTime', insertText: 'getSystemTime()', docLink: 'SYSF001900' },
 
   { name: 'getTemperature', insertText: 'getTemperature()', docLink: 'SF000100' },
   { name: 'getHumidity', insertText: 'getHumidity()', docLink: 'SF000200' },
@@ -579,6 +592,16 @@ const nanopyFunctions = [
     name: 'getI2CByteAddrSize',
     insertText: 'getI2CByteAddrSize(${1:size})',
     docLink: 'IOF001800',
+  },
+  {
+    name: 'setI2CBigEndian',
+    insertText: 'setI2CBigEndian()',
+    docLink: 'IOF001840',
+  },
+  {
+    name: 'setI2CLittleEndian',
+    insertText: 'setI2CLittleEndian()',
+    docLink: 'IOF001850',
   },
   {
     name: 'initDigitalLeds',
