@@ -371,6 +371,8 @@ const nanopyFunctions = [
     docLink: 'SYSF001800',
   },
   { name: 'getSystemTime', insertText: 'getSystemTime()', docLink: 'SYSF001900' },
+  { name: 'wifiPause', insertText: 'wifiPause()', docLink: 'SYSF002000' },
+  { name: 'wifiResume', insertText: 'wifiResume()', docLink: 'SYSF002100' },
 
   { name: 'getTemperature', insertText: 'getTemperature()', docLink: 'SF000100' },
   { name: 'getHumidity', insertText: 'getHumidity()', docLink: 'SF000200' },
