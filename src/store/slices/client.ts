@@ -1,11 +1,12 @@
 import { PayloadAction, createSlice } from '@reduxjs/toolkit';
+import { getBrowserLanguage } from '../../utility/getLanguage';
 
 interface ClientState {
   language: 'de' | 'en' | 'fr';
 }
 
 const initialState: ClientState = {
-  language: 'de',
+  language: getBrowserLanguage(),
 };
 
 export const client = createSlice({
@@ -17,7 +18,7 @@ export const client = createSlice({
       state.language = action.payload;
     },
     loadClient: (state) => {
-      const language = localStorage.getItem('editor.language') ?? 'de';
+      const language = localStorage.getItem('editor.language') ?? getBrowserLanguage();
       state.language = language as ClientState['language'];
     },
   },
