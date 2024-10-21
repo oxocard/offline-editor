@@ -1,6 +1,5 @@
 import styled from 'styled-components';
 import { useTranslation } from 'react-i18next';
-import { Theme } from '../../theme';
 
 /* Components */
 import SvgButton from '../SvgButton';
@@ -16,15 +15,15 @@ import { selectMenu, toggleMenu } from '../../store/slices/layout';
 
 /* Interfaces */
 interface MenuContainerProps {
-  isOpen: boolean;
+  $isOpen: boolean;
 }
 
 /* Styles */
 const MenuContainer = styled.div<MenuContainerProps>`
-  background-color: ${({ theme }: { theme: Theme }) => theme.colors.contentBackground};
+  background-color: ${({ theme }) => theme.colors.contentBackground};
   position: absolute;
-  min-width: ${({ isOpen }) => (isOpen ? '42rem' : '6rem')};
-  width: ${({ isOpen }) => (isOpen ? '24vw' : '6rem')};
+  min-width: ${({ $isOpen }) => ($isOpen ? '42rem' : '6rem')};
+  width: ${({ $isOpen }) => ($isOpen ? '24vw' : '6rem')};
 
   right: 0px;
   height: 100%;
@@ -52,7 +51,7 @@ const MenuContent = styled.div`
 const MenuNavigation = styled.div`
   height: 6rem;
   min-height: 6rem;
-  background-color: ${({ theme }: { theme: Theme }) => theme.colors.toolsHeaderBackground};
+  background-color: ${({ theme }) => theme.colors.toolsHeaderBackground};
 
   display: flex;
   justify-content: space-between;
@@ -77,7 +76,7 @@ function Menu() {
   const selectedMenu = useAppSelector((state) => state.layout.selectedMenu);
 
   return (
-    <MenuContainer isOpen={isMenuOpen}>
+    <MenuContainer $isOpen={isMenuOpen}>
       <MenuNavigation>
         <SvgButton
           id="btn_toggle_menu"

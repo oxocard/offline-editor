@@ -15,7 +15,7 @@ interface SvgButtonProps {
 }
 
 interface ButtonContainerProps {
-  activeColor?: string | null;
+  $activeColor?: string | null;
 }
 
 /* Styles */
@@ -47,8 +47,8 @@ const ButtonContainer = styled.button<ButtonContainerProps>`
 
   &.active {
     border-bottom: 4px solid
-      ${({ theme, activeColor }) =>
-        activeColor ? activeColor : theme.colors.toolsHeaderButtonActive};
+      ${({ theme, $activeColor }) =>
+        $activeColor ? $activeColor : theme.colors.toolsHeaderButtonActive};
   }
 
   &.disabled .svg_icon {
@@ -79,7 +79,7 @@ export default function SvgButton({
       onClick={() => {
         if (!disabled) onClick();
       }}
-      activeColor={activeColor}
+      $activeColor={activeColor}
     >
       {children}
     </ButtonContainer>

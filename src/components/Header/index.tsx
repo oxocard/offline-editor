@@ -1,5 +1,5 @@
 import { ThemeProvider, styled } from '@mui/material';
-import themes, { Theme } from '../../theme';
+import themes from '../../theme';
 
 /* Components */
 import ThemeSwitcher from './ThemeSwitch';
@@ -13,7 +13,7 @@ import logoNanoPy from '../../assets/svg/logo_nanopy.svg';
 
 /* Styles */
 const HeaderContainer = styled('div')`
-  background-color: ${({ theme }: { theme: Theme }) => theme.colors.headerBackground};
+  background-color: ${({ theme }) => theme.colors.headerBackground};
   height: 6rem;
   min-height: 6rem;
   margin-bottom: 1rem;

@@ -1,9 +1,9 @@
 import { Suspense, lazy } from 'react';
-import { ThemeProvider } from '@mui/material/styles';
+import { ThemeProvider } from '@mui/material';
 import styled from 'styled-components';
 import { useAppSelector } from './store/hooks';
 import { GlobalStyles } from './theme/GlobalStyles';
-import themes, { Theme } from './theme';
+import themes from './theme';
 
 /* Components */
 import Header from './components/Header';
@@ -18,13 +18,13 @@ import { Tooltip } from 'react-tooltip';
 
 /* Interfaces */
 interface EditorContainerProps {
-  isMenuOpen: boolean;
+  $isMenuOpen: boolean;
 }
 
 /* Styles */
 const AppContainer = styled.div`
-  color: ${({ theme }: { theme: Theme }) => theme.palette.text.primary};
-  background-color: ${({ theme }: { theme: Theme }) => theme.colors.mainBackground};
+  color: ${({ theme }) => theme.palette.text.primary};
+  background-color: ${({ theme }) => theme.colors.mainBackground};
   height: 100%;
 
   display: flex;
@@ -45,8 +45,8 @@ const EditorContainer = styled.div<EditorContainerProps>`
   overflow: hidden;
   flex: 1 0;
   margin: 0px 1rem;
-  margin-right: ${({ isMenuOpen }) => (isMenuOpen ? 'calc(max(42rem, 24vw) + 1rem)' : '7rem')};
-  background-color: ${({ theme }: { theme: Theme }) => theme.colors.contentBackground};
+  margin-right: ${({ $isMenuOpen }) => ($isMenuOpen ? 'calc(max(42rem, 24vw) + 1rem)' : '7rem')};
+  background-color: ${({ theme }) => theme.colors.contentBackground};
 
   display: flex;
   flex-direction: column;
@@ -59,7 +59,7 @@ const EditorContainer = styled.div<EditorContainerProps>`
 
 const EditorLoadingContainer = styled.div`
   flex: 1;
-  background-color: ${({ theme }: { theme: Theme }) => theme.colors.contentBackground};
+  background-color: ${({ theme }) => theme.colors.contentBackground};
 `;
 
 /* Lazy load the editor to use it in a suspense block */
@@ -75,7 +75,7 @@ function App() {
       <AppContainer>
         <Header />
         <MainContainer>
-          <EditorContainer isMenuOpen={isMenuOpen}>
+          <EditorContainer $isMenuOpen={isMenuOpen}>
             <ToolsHeader />
             <Suspense fallback={<EditorLoadingContainer />}>
               <Editor />

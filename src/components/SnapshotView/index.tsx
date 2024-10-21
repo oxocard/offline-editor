@@ -1,7 +1,6 @@
 import { styled } from '@mui/material/styles';
 import { useRef, useLayoutEffect, MouseEvent } from 'react';
 import { useTranslation } from 'react-i18next';
-import { Theme } from '../../theme';
 import { base64ToBytes } from '../../utility/base64';
 
 /* Components */
@@ -30,7 +29,7 @@ const SnapshotViewBackdrop = styled('div')`
 const SnapshotViewWrapper = styled('div')`
   width: 500px;
   height: 500px;
-  background-color: ${({ theme }: { theme: Theme }) => theme.colors.snapshotViewBackground};
+  background-color: ${({ theme }) => theme.colors.snapshotViewBackground};
   display: flex;
   flex-direction: column;
   align-items: center;

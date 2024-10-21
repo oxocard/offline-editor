@@ -1,5 +1,4 @@
 import styled from 'styled-components';
-import { Theme } from '../../../theme';
 
 /* Components */
 
@@ -16,8 +15,7 @@ interface VariableProps {
 const VariableWrapper = styled.div`
   height: 3rem;
   overflow: auto;
-  border-bottom: 1px solid
-    ${({ theme }: { theme: Theme }) => theme.colors.variableViewVariableBorder};
+  border-bottom: 1px solid ${({ theme }) => theme.colors.variableViewVariableBorder};
   font-size: 1.6rem;
   font-weight: 700;
 
@@ -25,12 +23,12 @@ const VariableWrapper = styled.div`
   align-items: center;
 
   &.base_type .name {
-    color: ${({ theme }: { theme: Theme }) => theme.colors.variableViewVariableBase};
+    color: ${({ theme }) => theme.colors.variableViewVariableBase};
   }
 
   .name {
     flex: 1;
-    color: ${({ theme }: { theme: Theme }) => theme.colors.variableViewVariableName};
+    color: ${({ theme }) => theme.colors.variableViewVariableName};
     font-weight: 700;
   }
 

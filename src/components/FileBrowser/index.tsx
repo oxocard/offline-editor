@@ -1,6 +1,6 @@
 import { ChangeEvent, MouseEvent, memo, useEffect, useRef, useState } from 'react';
 import { createPortal } from 'react-dom';
-import { styled } from '@mui/material/styles';
+import { styled } from '@mui/material';
 import { showPopup } from '../Popup';
 import { showInputPopup } from '../Popup/InputPopup';
 import { useTranslation } from 'react-i18next';
@@ -196,7 +196,7 @@ const FileBrowserModal = () => {
     const pathAndName =
       selectedItem.path.length > 0
         ? `${selectedItem.path}/${selectedItem.name}`
-        : selectedItem.name ?? '';
+        : (selectedItem.name ?? '');
     const res = await showInputPopup(pathAndName, {
       title: t('file_browser_rename_file'),
       acceptText: t('button_save'),

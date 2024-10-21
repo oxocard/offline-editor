@@ -1,5 +1,5 @@
 import { css } from 'styled-components';
-import type { Interpolation, ThemeProps } from 'styled-components';
+import type { Interpolation } from 'styled-components';
 
 /*
 MEDIA QUERY MANAGER
@@ -17,7 +17,7 @@ export enum Breakpoints {
 }
 
 export const respondMax = (breakpoint: Breakpoints) => {
-  return (style: TemplateStringsArray, ...params: Interpolation<ThemeProps<unknown>>[]) => css`
+  return (style: TemplateStringsArray, ...params: Interpolation<object>[]) => css`
     @media (max-width: ${breakpoint}) {
       ${css(style, ...params)};
     }
@@ -25,7 +25,7 @@ export const respondMax = (breakpoint: Breakpoints) => {
 };
 
 export const respondMin = (breakpoint: Breakpoints) => {
-  return (style: TemplateStringsArray, ...params: Interpolation<ThemeProps<unknown>>[]) => css`
+  return (style: TemplateStringsArray, ...params: Interpolation<object>[]) => css`
     @media (min-width: ${breakpoint}) {
       ${css(style, ...params)};
     }

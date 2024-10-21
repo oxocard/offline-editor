@@ -28,7 +28,7 @@ export interface UserScriptProps {
 }
 
 interface IconButtonProps {
-  hoverColor?: string;
+  $hoverColor?: string;
 }
 
 /* Styles */
@@ -90,7 +90,7 @@ const IconButton = styled.button<IconButtonProps>`
   }
 
   &:hover svg {
-    fill: ${({ theme, hoverColor }) => (hoverColor ? hoverColor : theme.colors.highlightBlue)};
+    fill: ${({ theme, $hoverColor }) => ($hoverColor ? $hoverColor : theme.colors.highlightBlue)};
   }
 
   &:active {
@@ -173,7 +173,7 @@ function UserScript({
           <div className="controls">
             <IconButton
               onClick={onLoadOnDevice}
-              hoverColor={theme.colors.highlightGreen}
+              $hoverColor={theme!.colors.highlightGreen}
               data-tooltip-id="main-tooltip"
               data-tooltip-content={t('menu_user_code_load_on_card')}
             >
@@ -183,7 +183,7 @@ function UserScript({
             {savedOnDevice && (
               <IconButton
                 onClick={onDeleteOnDevice}
-                hoverColor={theme.colors.highlightRed}
+                $hoverColor={theme!.colors.highlightRed}
                 data-tooltip-id="main-tooltip"
                 data-tooltip-content={t('menu_user_code_remove_from_card')}
               >
@@ -200,7 +200,7 @@ function UserScript({
             </IconButton>
             <IconButton
               onClick={() => onDelete(script.id, script.name)}
-              hoverColor={theme.colors.highlightRed}
+              $hoverColor={theme!.colors.highlightRed}
               data-tooltip-id="main-tooltip"
               data-tooltip-content={t('menu_user_code_delete')}
             >
@@ -224,10 +224,10 @@ function UserScript({
               autoFocus
             />
           </form>
-          <IconButton onClick={() => handleCancel()} hoverColor={theme.colors.highlightRed}>
+          <IconButton onClick={() => handleCancel()} $hoverColor={theme!.colors.highlightRed}>
             <CancelIcon />
           </IconButton>
-          <IconButton type="submit" form="name_form" hoverColor={theme.colors.highlightGreen}>
+          <IconButton type="submit" form="name_form" $hoverColor={theme!.colors.highlightGreen}>
             <TickIcon />
           </IconButton>
         </>

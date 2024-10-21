@@ -1,5 +1,5 @@
 import { useTranslation } from 'react-i18next';
-import { styled } from '@mui/material/styles';
+import { styled } from '@mui/material';
 
 /* Store */
 import { useAppDispatch } from '../../store/hooks';

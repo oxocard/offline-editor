@@ -1,7 +1,6 @@
 import { useLayoutEffect, useRef, useState } from 'react';
-import styled from 'styled-components';
+import { styled } from '@mui/material';
 import { SpriteType } from '../../../../types/sprite';
-import { Theme } from '../../../../theme';
 import colors from './colors';
 
 /* Components */
@@ -19,10 +18,10 @@ interface SpriteProps {
 }
 
 /* Styles */
-const SpritesContainer = styled.div`
+const SpritesContainer = styled('div')`
   padding: 1rem;
   margin-bottom: 2rem;
-  background-color: ${({ theme }: { theme: Theme }) => theme.colors.contentBackground};
+  background-color: ${({ theme }) => theme.colors.contentBackground};
 
   display: flex;
   align-items: flex-start;
@@ -33,7 +32,7 @@ const SpritesContainer = styled.div`
   }
 `;
 
-const SpriteContainer = styled.div`
+const SpriteContainer = styled('div')`
   margin-top: 1rem;
   margin-left: 1rem;
 
@@ -46,18 +45,18 @@ const SpriteContainer = styled.div`
   }
 `;
 
-const SpriteCanvas = styled.canvas`
-  width: ${({ width }) => `calc(${width} + 2px)`};
+const SpriteCanvas = styled('canvas')`
+  width: ${({ width }: { width: string }) => `calc(${width} + 2px)`};
   aspect-ratio: ${({ width = '10px', height = '10px' }: { width: string; height: string }) =>
     `${+width.replace('px', '')}/${+height.replace('px', '')}`};
   /* border: 1px solid white; */
-  outline: 1px solid ${({ theme }: { theme: Theme }) => theme.palette.text.primary};
+  outline: 1px solid ${({ theme }) => theme.palette.text.primary};
   image-rendering: pixelated;
   background-image: url(/assets/images/canvas_background.png);
   background-size: 3rem;
 
   &.x2 {
-    width: ${({ width }) => `calc(${+width.replace('px', '') * 2}px + 2px)`};
+    width: ${({ width }: { width: string }) => `calc(${+width.replace('px', '') * 2}px + 2px)`};
     background-size: 6rem;
   }
 
@@ -67,17 +66,17 @@ const SpriteCanvas = styled.canvas`
   }
 `;
 
-const Name = styled.h2`
+const Name = styled('h2')`
   margin-top: 1rem;
   padding: 0.5rem;
-  background-color: ${({ theme }: { theme: Theme }) => theme.colors.toolsHeaderBackground};
-  color: ${({ theme }: { theme: Theme }) => theme.palette.text.primary};
+  background-color: ${({ theme }) => theme.colors.toolsHeaderBackground};
+  color: ${({ theme }) => theme.palette.text.primary};
 
   display: flex;
   justify-content: space-between;
 
   .resolution {
-    color: ${({ theme }: { theme: Theme }) => theme.palette.text.primary};
+    color: ${({ theme }) => theme.palette.text.primary};
   }
 `;
 

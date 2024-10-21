@@ -2,6 +2,7 @@ import i18n, { use, init } from 'i18next';
 import { initReactI18next } from 'react-i18next';
 import languages from './languages';
 
+// eslint-disable-next-line react-hooks/rules-of-hooks
 use(initReactI18next); // passes i18n down to react-i18next
 init({
   resources: languages,

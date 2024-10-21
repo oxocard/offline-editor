@@ -130,7 +130,7 @@ export default function ToolsHeader() {
         onClick={() => {
           serial.debugRun();
         }}
-        activeColor={theme.colors.toolsHeaderButtonActivePlay}
+        activeColor={theme!.colors.toolsHeaderButtonActivePlay}
         active={editorMode === editorModes.debug_play}
       >
         <svg
@@ -153,7 +153,7 @@ export default function ToolsHeader() {
         onClick={() => {
           serial.debugObserve();
         }}
-        activeColor={theme.colors.toolsHeaderButtonActivePlay}
+        activeColor={theme!.colors.toolsHeaderButtonActivePlay}
         active={editorMode === editorModes.debug_observe}
       >
         <svg
@@ -183,7 +183,7 @@ export default function ToolsHeader() {
       <SvgButton
         id="btn_debug_pause"
         altText="Debug pause"
-        activeColor={theme.colors.toolsHeaderButtonActivePause}
+        activeColor={theme!.colors.toolsHeaderButtonActivePause}
         active={editorMode === editorModes.debug_pause}
         disabled={editorMode <= editorModes.run}
         onClick={() => {
@@ -232,7 +232,7 @@ export default function ToolsHeader() {
         onClick={() => {
           serial.debugStepToBreakpoint();
         }}
-        activeColor={theme.colors.toolsHeaderButtonActiveBreakpoint}
+        activeColor={theme!.colors.toolsHeaderButtonActiveBreakpoint}
         active={editorMode === editorModes.debug_until}
         disabled={!breakpointLine || editorMode <= editorModes.run}
       >

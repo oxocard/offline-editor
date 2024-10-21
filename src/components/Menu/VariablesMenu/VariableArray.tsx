@@ -1,6 +1,5 @@
 import { useState } from 'react';
 import styled from 'styled-components';
-import { Theme } from '../../../theme';
 
 /* Components */
 
@@ -18,8 +17,7 @@ const ArrayWrapper = styled.div`
   flex-direction: column;
   align-items: stretch;
   padding: 0.5rem 0px;
-  border-bottom: 1px solid
-    ${({ theme }: { theme: Theme }) => theme.colors.variableViewVariableBorder};
+  border-bottom: 1px solid ${({ theme }) => theme.colors.variableViewVariableBorder};
 
   .header {
     display: flex;
@@ -44,15 +42,14 @@ const ArrayWrapper = styled.div`
     .name {
       margin-left: 1rem;
       font-size: 1.8rem;
-      color: ${({ theme }: { theme: Theme }) => theme.colors.variableViewArrayName};
+      color: ${({ theme }) => theme.colors.variableViewArrayName};
     }
   }
 
   .content {
     margin-left: 0.75rem;
     padding-left: 1.25rem;
-    border-left: 1px solid
-      ${({ theme }: { theme: Theme }) => theme.colors.variableViewVariableBorder};
+    border-left: 1px solid ${({ theme }) => theme.colors.variableViewVariableBorder};
     max-height: 500rem;
     transition: max-height 0.2s ease-out;
     overflow: hidden;
@@ -65,7 +62,7 @@ const ArrayWrapper = styled.div`
       &_index {
         margin-top: 1rem;
         font-size: 1.8rem;
-        color: ${({ theme }: { theme: Theme }) => theme.colors.variableViewArrayName};
+        color: ${({ theme }) => theme.colors.variableViewArrayName};
       }
     }
   }

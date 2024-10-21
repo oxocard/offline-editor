@@ -1,7 +1,6 @@
 import { useState, useLayoutEffect, useRef } from 'react';
 import styled from 'styled-components';
 import { SpriteType } from '../../../../types/sprite';
-import { Theme } from '../../../../theme';
 import colors from './colors';
 
 /* Components */
@@ -27,7 +26,7 @@ interface SpriteEditorProps {
 /* Styles */
 const SpritesEditorContainer = styled.div`
   padding: 1rem;
-  background-color: ${({ theme }: { theme: Theme }) => theme.colors.contentBackground};
+  background-color: ${({ theme }) => theme.colors.contentBackground};
 
   display: flex;
   align-items: flex-start;
@@ -86,7 +85,7 @@ const Swatch = styled.div<ColorProps>`
   background-color: ${({ value }) =>
     `rgb(${colors[value][0]},${colors[value][1]},${colors[value][2]})`};
   margin-top: 0.5rem;
-  border: 1px solid ${({ theme }: { theme: Theme }) => theme.palette.text.primary};
+  border: 1px solid ${({ theme }) => theme.palette.text.primary};
   cursor: pointer;
 
   &.transparent {

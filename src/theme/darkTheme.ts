@@ -1,6 +1,16 @@
-import { createTheme } from '@mui/material/styles';
+import { createTheme } from '@mui/material';
 
-const CustomData = {
+const darkTheme = createTheme({
+  palette: {
+    mode: 'dark',
+    primary: { main: '#0084CC' },
+    secondary: { main: '#04A64B' },
+  },
+  typography: {
+    /* Tell Material-UI what's the font-size on the html element is. */
+    htmlFontSize: 10,
+    fontSize: 14,
+  },
   colors: {
     highlightBlue: '#07baef', // Logo blue
     highlightGreen: '#41e600', // Logo green
@@ -30,23 +40,6 @@ const CustomData = {
     variableViewVariableBorder: '#555555',
     variableViewArrayName: '#dada71',
   },
-};
+});
 
-const darkTheme = createTheme(
-  {
-    palette: {
-      mode: 'dark',
-      primary: { main: '#0084CC' },
-      secondary: { main: '#04A64B' },
-    },
-    typography: {
-      /* Tell Material-UI what's the font-size on the html element is. */
-      htmlFontSize: 10,
-      fontSize: 14,
-    },
-  },
-  CustomData
-);
-
-export type DarkTheme = typeof darkTheme & typeof CustomData;
 export default darkTheme;

@@ -17,7 +17,7 @@ async function readUntilClosed() {
     try {
       let receivedString = '';
       let timeoutRef: NodeJS.Timeout | undefined;
-      // eslint-disable-next-line no-constant-condition
+
       while (true) {
         const { value, done } = await reader.read();
         if (done) {

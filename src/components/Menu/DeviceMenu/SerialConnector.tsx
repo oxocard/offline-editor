@@ -1,4 +1,4 @@
-import { styled } from '@mui/material/styles';
+import { styled } from '@mui/material';
 import { useTranslation } from 'react-i18next';
 import Serial from '../../../serial';
 

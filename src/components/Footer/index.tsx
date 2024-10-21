@@ -1,5 +1,4 @@
 import { styled } from '@mui/material';
-import { Theme } from '../../theme';
 import { useTranslation } from 'react-i18next';
 import Serial from '../../serial';
 
@@ -12,7 +11,7 @@ import { useAppSelector } from '../../store/hooks';
 
 /* Styles */
 const FooterContainer = styled('div')`
-  background-color: ${({ theme }: { theme: Theme }) => theme.colors.mainBackground};
+  background-color: ${({ theme }) => theme.colors.mainBackground};
   height: 3rem;
   min-height: 3rem;
   font-size: 1.6rem;
