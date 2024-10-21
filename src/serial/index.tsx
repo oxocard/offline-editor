@@ -278,7 +278,12 @@ export default class Serial {
     }
   }
 
-  public sendCode() {
+  public sendCode(code: string) {
+    this._sendData(compose.runCodePayload(code));
+    store.dispatch(editorActions.highlightLine(0));
+  }
+
+  public sendCurrentCode() {
     const state = store.getState();
     this._sendData(compose.runCodePayload(state.editor.code.replaceAll('\r', '')));
     store.dispatch(editorActions.highlightLine(0));

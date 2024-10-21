@@ -136,7 +136,7 @@ export default function ConstantViewer() {
     clearTimeout(runTimeoutId.current);
     runTimeoutId.current = setTimeout(() => {
       const serial = Serial.getInstance();
-      serial.sendCode();
+      serial.sendCurrentCode();
     }, RUN_DEBOUNCE_MS);
   };
 

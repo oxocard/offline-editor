@@ -3,10 +3,13 @@ import { FormEvent, useContext, useState } from 'react';
 import styled, { ThemeContext } from 'styled-components';
 import { useTranslation } from 'react-i18next';
 import Serial from '../../../serial';
+import download from '../../../utility/fileDownload';
+import loadOnCartridgeScript from './loadOnCartridge';
 
 /* Components */
 
 /* Store */
+import { useAppSelector } from '../../../store/hooks';
 import { Script } from '../../../store/slices/editor';
 
 /* Images */
@@ -16,6 +19,8 @@ import TickIcon from '../../../assets/svg/icon_tick.svg?react';
 import CancelIcon from '../../../assets/svg/icon_cancel.svg?react';
 import DownloadIcon from '../../../assets/svg/icon_download.svg?react';
 import RemoveScriptIcon from '../../../assets/svg/icon_remove_script.svg?react';
+import BrowserUpdatedIcon from '@mui/icons-material/BrowserUpdated';
+import MoveToInboxIcon from '@mui/icons-material/MoveToInbox';
 
 /* Interfaces */
 export interface UserScriptProps {
@@ -126,7 +131,32 @@ function UserScript({
   const [isEditable, setEditable] = useState(false);
   const [name, setName] = useState(script.name);
 
+  const isConnected = useAppSelector((state) => state.device.isConnected);
+  const deviceInfo = useAppSelector((state) => state.device.deviceInfo);
+  const isOxocardConnect = deviceInfo.supType === 'Connect';
+
   const theme = useContext(ThemeContext);
+
+  const onLoadOnCartridge = () => {
+    const scriptName = script.name.includes('.npy') ? script.name : `${script.name}.npy`;
+    let startCode = window.atob(loadOnCartridgeScript.startScript);
+    startCode = startCode.replace(loadOnCartridgeScript.pattern, scriptName);
+    const serial = Serial.getInstance();
+    serial.sendCode(startCode);
+    setTimeout(() => {
+      serial.writeSpiffsFile(`user_scripts/${scriptName}`, window.atob(script.content));
+      setTimeout(
+        () => {
+          let code = window.atob(loadOnCartridgeScript.flashScript);
+          code = code.replace(loadOnCartridgeScript.pattern, scriptName);
+          serial.sendCode(code);
+        },
+        /* Estimation of the time it takes to download the script,
+           depending on the scripts size */
+        script.content.length / 7 + 1000
+      );
+    }, 2000);
+  };
 
   const handleSubmit = (evt: FormEvent<HTMLFormElement>) => {
     evt.preventDefault();
@@ -157,6 +187,10 @@ function UserScript({
     }, 1000);
   };
 
+  const onDownload = () => {
+    download(atob(script.content), script.name + '.npy', 'text/plain');
+  };
+
   return (
     <CodeContainer>
       {!isEditable && (
@@ -171,16 +205,28 @@ function UserScript({
           </Code>
           <Space />
           <div className="controls">
-            <IconButton
-              onClick={onLoadOnDevice}
-              $hoverColor={theme!.colors.highlightGreen}
-              data-tooltip-id="main-tooltip"
-              data-tooltip-content={t('menu_user_code_load_on_card')}
-            >
-              <DownloadIcon />
-            </IconButton>
+            {isConnected && isOxocardConnect && (
+              <IconButton
+                className="material_icon"
+                onClick={onLoadOnCartridge}
+                data-tooltip-id="main-tooltip"
+                data-tooltip-content={t('menu_load_on_cartridge')}
+              >
+                <MoveToInboxIcon />
+              </IconButton>
+            )}
 
-            {savedOnDevice && (
+            {isConnected && (
+              <IconButton
+                onClick={onLoadOnDevice}
+                $hoverColor={theme!.colors.highlightGreen}
+                data-tooltip-id="main-tooltip"
+                data-tooltip-content={t('menu_user_code_load_on_card')}
+              >
+                <DownloadIcon />
+              </IconButton>
+            )}
+            {savedOnDevice && isConnected && (
               <IconButton
                 onClick={onDeleteOnDevice}
                 $hoverColor={theme!.colors.highlightRed}
@@ -190,7 +236,14 @@ function UserScript({
                 <RemoveScriptIcon />
               </IconButton>
             )}
-
+            <IconButton
+              className="material_icon"
+              onClick={onDownload}
+              data-tooltip-id="main-tooltip"
+              data-tooltip-content={t('menu_user_code_download')}
+            >
+              <BrowserUpdatedIcon />
+            </IconButton>
             <IconButton
               onClick={() => setEditable(true)}
               data-tooltip-id="main-tooltip"

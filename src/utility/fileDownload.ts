@@ -1,5 +1,5 @@
 export default function download(
-  content: Uint8Array,
+  content: Uint8Array | string,
   filename: string,
   contentType = 'application/octet-stream'
 ) {

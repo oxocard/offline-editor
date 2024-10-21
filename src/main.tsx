@@ -3,6 +3,7 @@ import ReactDOM from 'react-dom/client';
 import { Provider, batch } from 'react-redux';
 import i18n from './i18n.ts';
 import { ToastContainer } from 'react-toastify';
+import Serial from './serial/index.tsx';
 
 /* Components */
 import App from './App.tsx';
@@ -15,7 +16,6 @@ import { loadLayout } from './store/slices/layout.ts';
 
 /* Styles */
 import { CssBaseline } from '@mui/material';
-import Serial from './serial/index.tsx';
 import 'react-toastify/dist/ReactToastify.css';
 
 batch(() => {
@@ -50,7 +50,7 @@ document.addEventListener('keydown', (e) => {
         store.dispatch(setShowDeviceState(true));
       });
       const serial = Serial.getInstance();
-      serial.sendCode();
+      serial.sendCurrentCode();
     }
   }
 });

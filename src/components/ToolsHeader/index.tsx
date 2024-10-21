@@ -75,7 +75,7 @@ export default function ToolsHeader() {
             dispatch(resetError());
             dispatch(setShowDeviceState(true));
           });
-          serial.sendCode();
+          serial.sendCurrentCode();
         }}
       >
         {runDebounce ? (

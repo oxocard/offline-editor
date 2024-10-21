@@ -1,3 +1,4 @@
+import { ChangeEvent } from 'react';
 import styled from 'styled-components';
 import { batch } from 'react-redux';
 import { useTranslation } from 'react-i18next';
@@ -12,6 +13,7 @@ import { useAppDispatch, useAppSelector } from '../../../store/hooks';
 import { Script, changeName, saveUserScripts, setCode } from '../../../store/slices/editor';
 
 /* Images */
+import UploadFileIcon from '@mui/icons-material/UploadFile';
 import AddIcon from '../../../assets/svg/icon_add_document.svg?react';
 
 /* Styles */
@@ -42,6 +44,33 @@ const CodeList = styled.ul`
   margin: 0;
   margin-top: 1.5rem;
   padding: 0;
+`;
+
+const TitleButtons = styled.div`
+  display: flex;
+`;
+
+const UploadButton = styled.span`
+  padding: 0;
+  border: none;
+  background: none;
+  cursor: pointer;
+  margin-right: 0.5rem;
+  margin-left: 0.5rem;
+
+  display: flex;
+  align-items: center;
+
+  svg {
+    fill: ${({ theme }) => theme.colors.primary};
+    width: 3rem;
+  }
+
+  &:hover {
+    svg {
+      fill: ${({ theme }) => theme.colors.highlightBlue};
+    }
+  }
 `;
 
 const AddButton = styled.button`
@@ -182,17 +211,64 @@ function UserScriptsMenu() {
     dispatch(saveUserScripts(newUserScripts));
   };
 
+  const onUploadScript = async (e: ChangeEvent<HTMLInputElement>) => {
+    const file = e.target.files && e.target.files[0];
+    if (!file) return;
+
+    /* Get the name of the file without the file extension */
+    const fileName = file.name.replace(/.npy/gi, '').replace(/[^a-zA-Z0-9-_ ]/gi, '_');
+
+    const reader = new FileReader();
+
+    /* Set up a callback function to run when the file is loaded */
+    reader.onload = function (event) {
+      /* Get the code and add it as a new script */
+      const code = event.target?.result;
+      const newScript: Script = {
+        id: crypto.randomUUID(),
+        name: findNameNumber(fileName),
+        content: window.btoa(code as string),
+        changedAt: Date.now(),
+      };
+      const newUserScripts = [...userScripts, newScript];
+      dispatch(saveUserScripts(newUserScripts));
+    };
+
+    /* Read the selected file as text*/
+    reader.readAsText(file);
+
+    e.target.value = '';
+  };
+
   return (
     <UserCodesContainer>
       <TitleContainer>
         <h1>{t('menu_user_code_title')}:</h1>
-        <AddButton
-          onClick={() => newUserCode()}
-          data-tooltip-id="main-tooltip"
-          data-tooltip-content={t('menu_user_code_add_text')}
-        >
-          <AddIcon />
-        </AddButton>
+        <TitleButtons>
+          <label htmlFor="upload_script">
+            <input
+              style={{ display: 'none' }}
+              id="upload_script"
+              name="upload_script"
+              type="file"
+              accept=".npy"
+              onChange={onUploadScript}
+            />
+            <UploadButton
+              data-tooltip-id="main-tooltip"
+              data-tooltip-content={t('menu_user_code_upload_script')}
+            >
+              <UploadFileIcon />
+            </UploadButton>
+          </label>
+          <AddButton
+            onClick={() => newUserCode()}
+            data-tooltip-id="main-tooltip"
+            data-tooltip-content={t('menu_user_code_add_text')}
+          >
+            <AddIcon />
+          </AddButton>
+        </TitleButtons>
       </TitleContainer>
       <CodeList id="user_code_list">
         {userScripts.map((script) => (
