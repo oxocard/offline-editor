@@ -49,10 +49,10 @@ const codeToConstObjects = (code: string): Constant[] => {
       if (name) name = name.replace(/const +/, '');
       else return null;
 
-      const hexRgb = c.match(/= +0x([A-F0-9]{6})/);
+      const hexRgb = c.match(/= *0x([A-F0-9]{6})/);
       if (hexRgb) {
-        if (c.match(/# +(HEX_RGB)/)) {
-          valueString = hexRgb[0].replace(/= +/, '');
+        if (c.match(/# *(HEX_RGB)/)) {
+          valueString = hexRgb[0].replace(/= */, '');
           value = valueString;
           type = 'hexRgb';
         } else {
@@ -60,17 +60,19 @@ const codeToConstObjects = (code: string): Constant[] => {
         }
       } else {
         /* Get the constants value */
-        value = c.match(/= +[+-]?([0-9]*[.])?[0-9]+/);
+        value = c.match(/= *[+-]?([0-9]*[.])?[0-9]+(?= *#)/);
         /* check if it is a number */
         if (value) {
-          valueString = value[0].replace(/= +/, '') || '';
+          valueString = value[0].replace(/= */, '') || '';
           value = +valueString;
           /* Differentiate between numbers and floats */
-          if (c.match(/# +[-]?[0-9]+[ ]?..[ ]?[-]?[0-9]+/)) {
+          if (c.match(/# *[-]?[0-9]+[ ]?..[ ]?[-]?[0-9]+(?=[ +\n\t]+|$)/)) {
             type = 'number';
-          } else if (c.match(/# +[-]?([0-9]*[.])?[0-9]+[ ]?..[ ]?[-]?([0-9]*[.])?[0-9]+/)) {
+          } else if (
+            c.match(/# *[-]?([0-9]*[.])?[0-9]+[ ]?..[ ]?[-]?([0-9]*[.])?[0-9]+(?=[ +\n\t]+|$)/)
+          ) {
             type = 'float';
-          } else if (c.match(/# +(HUE)/)) {
+          } else if (c.match(/# *(HUE)/)) {
             type = 'hue';
           } else {
             return null;
@@ -78,9 +80,9 @@ const codeToConstObjects = (code: string): Constant[] => {
           if (type === 'number' || type === 'float') {
             /* Get the minimal and maximal values */
             const ranges = c
-              ?.match(/# +[-]?([0-9]*[.])?[0-9]+[ ]?..[ ]?[-]?([0-9]*[.])?[0-9]+/)
+              ?.match(/# *[-]?([0-9]*[.])?[0-9]+[ ]?..[ ]?[-]?([0-9]*[.])?[0-9]+(?=[ +\n\t]+|$)/)
               ?.at(0)
-              ?.replace(/# +/, '')
+              ?.replace(/# */, '')
               .split('..');
             if (
               !ranges ||
@@ -94,9 +96,9 @@ const codeToConstObjects = (code: string): Constant[] => {
           }
         } else {
           /* If it is not a number, check if it is a boolean */
-          value = c.match(/= +(true|false){1}/);
+          value = c.match(/= *(true|false){1}/);
           type = 'boolean';
-          if (value?.length) value = value[0].replace(/= +/, '') === 'true';
+          if (value?.length) value = value[0].replace(/= */, '') === 'true';
           else return null;
         }
       }
@@ -128,7 +130,8 @@ export default function ConstantViewer() {
   const changeConstant = (constant: Constant, value: Constant['value']) => {
     const currentValueString = `${constant.valueString || constant.value}`;
     const newValueString = `${value}`;
-    const newLine = constant.line.replace(currentValueString, newValueString);
+    const regex = new RegExp(`(?<= *= *[+-]?)${currentValueString}`);
+    const newLine = constant.line.replace(regex, newValueString);
     const newCode = code.replace(constant.line, newLine);
     dispatch(changeCode(newCode));
 
