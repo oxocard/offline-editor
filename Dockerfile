@@ -10,4 +10,6 @@ COPY . /app
 RUN npm install
 RUN npm run build
 
+EXPOSE 1777
+
 CMD ["npm", "start", "--", "--host", "0.0.0.0"]
