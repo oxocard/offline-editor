@@ -54,21 +54,21 @@ body {
 
 /* Track */
 ::-webkit-scrollbar-track {
-  background: none; 
+  background: none;
 }
- 
+
 /* Handle */
 ::-webkit-scrollbar-thumb {
-  background: #888; 
+  background: #888;
 }
 
 /* Handle on hover */
 ::-webkit-scrollbar-thumb:hover {
-  background: #AAA; 
+  background: #AAA;
 }
 
 ::-webkit-scrollbar-corner {
-  background: none; 
+  background: none;
 }
 
 .toast-container {

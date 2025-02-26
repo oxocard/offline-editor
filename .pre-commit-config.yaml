@@ -1,0 +1,24 @@
+repos:
+  - repo: https://github.com/pre-commit/pre-commit-hooks
+    rev: v2.3.0
+    hooks:
+      - id: check-yaml
+      - id: end-of-file-fixer
+        exclude: ^.*\.(svg)$
+      - id: trailing-whitespace
+  - repo: local
+    hooks:
+      - id: app-prettier
+        name: run prettier
+        language: system
+        files: ^.*$
+        types_or: [javascript, json]
+        entry: |
+          bash -c 'npm run prettier "${@}"' --
+      - id: app-lint
+        name: run linter
+        language: system
+        files: ^.*$
+        types_or: [javascript]
+        entry: |
+          bash -c 'npm run lint "${@}"' --

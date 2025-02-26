@@ -1,6 +1,6 @@
 /* This webworker is needed because the serial needs to read data ina an infinite loop.
    Otherwise the UI would be affected by this loop.
-   
+
    The webworker can only connect to ports already unlocked by the UI.
    Thats why navigator.serial.requestPort happens in the serial middleware */
 

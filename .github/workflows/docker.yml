@@ -16,11 +16,12 @@ env:
   IMAGE_NAME: ${{ github.repository }}
 
 jobs:
-  buildx:
+  check-and-build:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
         uses: actions/checkout@v4
+      - uses: pre-commit/action@v3.0.1
       - name: Set up QEMU
         uses: docker/setup-qemu-action@v3
       - name: Set up Docker Buildx
